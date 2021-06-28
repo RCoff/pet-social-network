@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+{% endblock %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    <main class="form-signin">
+        <div class="container">
+            <h1 class="h3 mb-3 fw-normal">Log In</h1>
+            <form action="{% url 'login' %}" method="post">
+                {% csrf_token %}
+                <div class="form-floating">
+                    {{ form.email }}
+                </div>
+                <div class="form-floating">
+                    {{ form.password }}
+                </div>
+                <button type="submit" class="btn btn-primary btn-block w-100">Log In</button>
+            </form>
+        </div>
+    </main>
+{% endblock %}
