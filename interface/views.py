@@ -8,7 +8,7 @@ from data.models import AnimalModel, Friends, PetPost
 from .forms import LoginForm
 
 
-class Index(LoginRequiredMixin, View):
+class Index(View):
     template_name = "index.html"
 
     def get(self, request):
