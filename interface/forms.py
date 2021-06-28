@@ -3,5 +3,6 @@ from django.contrib.auth.forms import AuthenticationForm
 
 
 class LoginForm(AuthenticationForm):
-    email = forms.EmailField(max_length=140)
+    username = forms.CharField(max_length=140)
+    # email = forms.EmailField(max_length=140)
     password = forms.CharField(max_length=140, widget=forms.PasswordInput)
