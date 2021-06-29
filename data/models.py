@@ -1,5 +1,7 @@
 import uuid
 
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -15,11 +17,16 @@ class AnimalModel(models.Model):
     animal_type = models.CharField(max_length=140, choices=animal_choices)
     animal_name = models.CharField(max_length=140)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    age_years = models.PositiveSmallIntegerField()
+    age_years = models.PositiveSmallIntegerField(blank=True, null=True)
+    birth_date = models.DateField(blank=True, null=True)
     created = models.DateTimeField(auto_now=True, editable=False)
 
     class Meta:
         unique_together = ['owner', 'animal_type', 'animal_name']
+
+    def clean(self):
+        if self.age_years is None and self.birth_date is None:
+            raise ValidationError(_('Must have either an age or birth date'))
 
 
 class BehaviorModel(models.Model):
