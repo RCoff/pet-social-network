@@ -16,6 +16,7 @@ class AnimalModel(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     animal_type = models.CharField(max_length=140, choices=animal_choices)
     animal_name = models.CharField(max_length=140)
+    animal_breed = models.CharField(max_length=50, blank=True, null=True, editable=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     age_years = models.PositiveSmallIntegerField(blank=True, null=True)
     birth_date = models.DateField(blank=True, null=True)

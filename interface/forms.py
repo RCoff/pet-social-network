@@ -16,10 +16,11 @@ class LoginForm(AuthenticationForm):
 class AddAPetForm(forms.ModelForm):
     class Meta:
         model = AnimalModel
-        fields = ('animal_type', 'animal_name', 'age_years', 'birth_date')
+        fields = ('animal_type', 'animal_name', 'animal_breed', 'age_years', 'birth_date')
         widgets = {
             'animal_type': forms.Select(attrs={'class': 'form-select'}),
             'animal_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'animal_breed': forms.TextInput(attrs={'class': 'form-control'}),
             'age_years': forms.NumberInput(attrs={'class': 'form-control'}),
             'birth_date': forms.DateInput(attrs={'class': 'form-control'})
         }

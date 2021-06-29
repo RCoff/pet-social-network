@@ -28,7 +28,11 @@
                     {% for animal in owned_animals_list %}
                         <div class="col">
                             <div class="card shadow-sm" style="text-align: center;">
-                                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                                {% if animal.petprofile.profile_image %}
+                                    <img src="{{ animal.petprofile.profile_image.url }}" width="100%" height="225">
+                                {% else %}
+                                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                                {% endif %}
                                 <div class="card-body">
                                     <h4 class="my-0 fw-normal">{{ animal.animal_name }}</h4>
                                     <a href="{% url 'profile' id=animal.id %}" class="btn btn-primary mt-4">Click to open profile</a>
