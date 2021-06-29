@@ -1,15 +1,43 @@
 {% extends 'base.html' %}
 
 {% block head %}
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
 {% endblock %}
 
-{% block title %}{% endblock %}
+{% block title %}Home{% endblock %}
 
 {% block content %}
-    <ul>
-        {% for animal in owned_animals_list %}
-            <li><a href="{% url 'profile' id=animal.id %}">{{ animal.animal_name }}</a></li>
-
-        {% endfor %}
-    </ul>
+    <div class="container">
+        <div class="album py-4 bg-light">
+            <div class="container">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md g-3">
+                    {% for animal in owned_animals_list %}
+                        <div class="col">
+                            <div class="card shadow-sm" style="text-align: center;">
+                                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                                <div class="card-body">
+                                    <h4 class="my-0 fw-normal">{{ animal.animal_name }}</h4>
+                                    <a href="{% url 'profile' id=animal.id %}" class="btn btn-primary mt-4">Click to open profile</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

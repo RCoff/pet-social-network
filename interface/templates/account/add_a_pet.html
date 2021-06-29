@@ -1,10 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+{% block title %}Add A Pet{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="h3 mb-3 fw-normal">Add A Pet</h1>
+        <form method="post" action="{% url 'add_a_pet' %}">
+            {% csrf_token %}
+            <div class="form-floating">
+                {{ form.animal_name }}
+                <label for="id_animal_name">Name</label>
+            </div>
+            <div class="form-floating mt-3">
+                {{ form.animal_type }}
+                <label for="id_animal_type">Type</label>
+            </div>
+            <div class="row g-2 mt-2">
+                <div class="col-md">
+                    <div class="form-floating">
+                        {{ form.birth_date }}
+                        <label for="id_birth_date">Birth date</label>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="form-floating">
+                        {{ form.age_years }}
+                        <label for="id_age_years">Age (years)</label>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="w-100 btn btn-primary btn-lg mt-3">Submit</button>
+        </form>
+    </div>
+{% endblock %}

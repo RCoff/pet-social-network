@@ -6,19 +6,22 @@
 {% block title %}{{ profile.animal_name }}{% endblock %}
 
 {% block content %}
+    <h1>{{ profile.animal_name }}</h1>
     <div>
-        <img src="{{ profile.petprofile.profile_image.url }}" class="img-thumbnail" style="height: 100% !important; width: 200px !important;">
+        {% if profile.petprofile.profile_image %}
+            <img src="{{ profile.petprofile.profile_image.url }}" class="img-thumbnail" style="height: 100% !important; width: 200px !important;">
+        {% endif %}
     </div>
     <div>
         <p>{{ profile.petprofile.profile_description }}</p>
     </div>
     <div>
-        <ul>
-            {% for friend in friend_posts %}
-                {% for post in friend.friend.petprofile.petpost_set %}
-                    <li>{{ post }}</li>
-                {% endfor %}
-            {% endfor %}
-        </ul>
+{#        <ul>#}
+{#            {% for friend in friend_posts %}#}
+{#                {% for post in friend.friend.petprofile.petpost_set %}#}
+{#                    <li>{{ post }}</li>#}
+{#                {% endfor %}#}
+{#            {% endfor %}#}
+{#        </ul>#}
     </div>
 {% endblock %}

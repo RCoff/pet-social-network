@@ -1,11 +1,13 @@
 from django.shortcuts import render
-from django.views.generic import View, ListView, TemplateView
+from django.http import HttpResponseRedirect
+from django.views.generic import View, ListView, TemplateView, FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.shortcuts import get_object_or_404
+from django.urls import reverse
 
 from data.models import AnimalModel, Friends, PetPost
-from .forms import LoginForm
+from .forms import LoginForm, AddAPetForm
 
 
 class Index(View):
@@ -44,6 +46,25 @@ class PetProfile(LoginRequiredMixin, View):
     def friend_posts(self):
         qs = Friends.objects.select_related('friend').filter(animal=self.profile_id)
         return qs
+
+
+class AddAPet(LoginRequiredMixin, View):
+    form_class = AddAPetForm
+    template_name = 'account/add_a_pet.html'
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, {'form': self.form_class})
+
+    def post(self, request, *args, **kwargs):
+        self.form_class = self.form_class(request.POST)
+        if self.form_class.is_valid():
+            animal_form = self.form_class.save(commit=False)
+            animal_form.owner = request.user
+            animal_form.save()
+            return HttpResponseRedirect(reverse('home'))
+        else:
+            return render(request, self.template_name, {'form': self.form_class,
+                                                        'form_not_valid': True})
 
 
 class Login(LoginView):
