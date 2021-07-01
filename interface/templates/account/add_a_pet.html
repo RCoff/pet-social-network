@@ -13,7 +13,7 @@
             {% csrf_token %}
             <div class="form-floating">
                 {{ form.animal_name }}
-                <label for="id_animal_name">Name</label>
+                <label for="id_animal_name">Pet Name</label>
             </div>
             <div class="form-floating mt-3">
                 {{ form.animal_type }}
@@ -36,6 +36,14 @@
                         <label for="id_age_years">Age (years)</label>
                     </div>
                 </div>
+            </div>
+            <div class="mb-3 mt-1">
+                <label for="id_profile_image" style="opacity: 0.70;">Profile image</label>
+                {{ profile_form.profile_image }}
+            </div>
+            <div class="form-floating">
+                {{ profile_form.profile_description }}
+                <label for="id_profile_description">Profile description</label>
             </div>
             <button type="submit" class="w-100 btn btn-primary btn-lg mt-3">Submit</button>
         </form>

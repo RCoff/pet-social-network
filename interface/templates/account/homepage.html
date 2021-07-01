@@ -2,19 +2,19 @@
 
 {% block head %}
     <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
         }
-      }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
     </style>
 {% endblock %}
 
@@ -31,11 +31,35 @@
                                 {% if animal.petprofile.profile_image %}
                                     <img src="{{ animal.petprofile.profile_image.url }}" width="100%" height="225">
                                 {% else %}
-                                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                                         xmlns="http://www.w3.org/2000/svg" role="img"
+                                         aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"
+                                         focusable="false"><title>Placeholder</title>
+                                        <rect width="100%" height="100%" fill="#55595c"></rect>
+                                        <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                                    </svg>
                                 {% endif %}
                                 <div class="card-body">
-                                    <h4 class="my-0 fw-normal">{{ animal.animal_name }}</h4>
-                                    <a href="{% url 'profile' id=animal.id %}" class="btn btn-primary mt-4">Click to open profile</a>
+                                    <div class="d-flex justify-content-center">
+                                        <h4 class="my-0 fw-normal ms-4 pt-1">{{ animal.animal_name }}</h4>
+                                        <div class="dropdown">
+                                            <button type="button" class="btn btn-secondary-outline"
+                                                    id="PetOptionsDropdown-{{ animal.counter }}" data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                     fill="currentColor" class="bi bi-three-dots-vertical"
+                                                     viewBox="0 0 16 16">
+                                                    <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                                                </svg>
+                                            </button>
+                                            <ul class="dropdown-menu"
+                                                aria-labelledby="PetOptionsDropdown-{{ animal.counter }}">
+                                                <li><a class="dropdown-item" href="#">Remove Pet</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <a href="{% url 'profile' id=animal.id %}" class="btn btn-primary mt-4">Click to
+                                        open profile</a>
                                 </div>
                             </div>
                         </div>

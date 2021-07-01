@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 
-from data.models import AnimalModel
+from data.models import AnimalModel, PetProfile
 
 
 class LoginForm(AuthenticationForm):
@@ -23,4 +23,16 @@ class AddAPetForm(forms.ModelForm):
             'animal_breed': forms.TextInput(attrs={'class': 'form-control'}),
             'age_years': forms.NumberInput(attrs={'class': 'form-control'}),
             'birth_date': forms.DateInput(attrs={'class': 'form-control'})
+        }
+
+
+class PetProfileForm(forms.ModelForm):
+    class Meta:
+        model = PetProfile
+        fields = ('profile_image', 'profile_description')
+        widgets = {
+            'profile_image': forms.FileInput(attrs={'class': 'form-control'}),
+            'profile_description': forms.Textarea(attrs={'class': 'form-control',
+                                                         'style': 'height: auto !important;',
+                                                         'rows': '3'})
         }
