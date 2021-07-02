@@ -6,7 +6,22 @@
 {% block title %}Index{% endblock %}
 
 {% block content %}
-    <div class="container">
-        <h1>Hello!</h1>
-    </div>
+    <main class="py-5 text-center container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light">Welcome!</h1>
+                <p class="lead text-muted">
+                    Welcome to the Pet Social Network (name in development).
+                    This site is to serve as a minimal interface for interacting
+                    with multiple external social media sites, integrating the feed
+                    for each into a singular feed.
+                    ... and it's for pets!
+                </p>
+                <p>
+                    <a href="#" class="btn btn-secondary my-2" style="width: 155px !important;">Create an account</a>
+                    <a href="{% url 'login' %}" class="btn btn-primary my-2 ms-2" style="width: 155px !important;">Log In</a>
+                </p>
+            </div>
+        </div>
+    </main>
 {% endblock %}
