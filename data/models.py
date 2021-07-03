@@ -78,3 +78,14 @@ class PetLinkedAccount(models.Model):
     account_type = models.CharField(max_length=25, choices=ACCOUNT_TYPE_CHOICES, editable=False, blank=False)
     account_url = models.URLField(editable=False, blank=False)
     created = models.DateTimeField(auto_now=True, editable=False)
+
+
+class UserPreferences(models.Model):
+    THEME_CHOICES = (
+        ('Light', 'Light'),
+        ('Dark', 'Dark')
+    )
+
+    owner = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
+    default_profile = models.OneToOneField(PetProfile, on_delete=models.CASCADE)
+    theme = models.CharField(max_length=50, choices=THEME_CHOICES)
