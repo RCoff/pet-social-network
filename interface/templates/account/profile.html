@@ -6,22 +6,33 @@
 {% block title %}{{ profile.animal_name }}{% endblock %}
 
 {% block content %}
-    <h1>{{ profile.animal_name }}</h1>
-    <div>
-        {% if profile.petprofile.profile_image %}
-            <img src="{{ profile.petprofile.profile_image.url }}" class="img-thumbnail" style="height: 100% !important; width: 200px !important;">
-        {% endif %}
+    <div class="container py-4">
+        <div class="mb-4 bg-light rounded-3">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-3 py-5">
+                        {% if profile.petprofile.profile_image %}
+                            <img src="{{ profile.petprofile.profile_image.url }}" class="img-thumbnail" width="250" height="100%">
+                        {% endif %}
+                    </div>
+                    <div class="col-8 py-4">
+                        <h1 class="display-5 fw-bold">{{ profile.animal_name }}</h1>
+                        <div>
+                            <p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fermentum magna commodo tincidunt eleifend. Aliquam sodales tortor elit, eu efficitur justo congue ac. Quisque mollis tortor a leo consequat laoreet. Curabitur scelerisque, sem sed interdum auctor, libero libero laoreet eros, id laoreet nisi lectus quis erat. Quisque porta dolor leo, vitae sollicitudin orci suscipit maximus. Suspendisse eu ipsum leo. Quisque ex purus, volutpat vel condimentum ac, maximus quis felis. Donec ac purus et nulla consectetur tempor. Nulla interdum mi ut blandit ultricies. Ut tincidunt arcu sed ante volutpat, et pellentesque elit ullamcorper. Etiam vitae ligula pellentesque, commodo arcu sed, aliquam augue.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div>
-        <p>{{ profile.petprofile.profile_description }}</p>
-    </div>
-    <div>
-{#        <ul>#}
-{#            {% for friend in friend_posts %}#}
-{#                {% for post in friend.friend.petprofile.petpost_set %}#}
-{#                    <li>{{ post }}</li>#}
-{#                {% endfor %}#}
-{#            {% endfor %}#}
-{#        </ul>#}
+        {#        <ul>#}
+        {#            {% for friend in friend_posts %}#}
+        {#                {% for post in friend.friend.petprofile.petpost_set %}#}
+        {#                    <li>{{ post }}</li>#}
+        {#                {% endfor %}#}
+        {#            {% endfor %}#}
+        {#        </ul>#}
     </div>
 {% endblock %}
