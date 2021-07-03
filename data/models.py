@@ -83,7 +83,7 @@ class PetLinkedAccount(models.Model):
 class UserPreferences(models.Model):
     THEME_CHOICES = (
         ('Light', 'Light'),
-        ('Dark', 'Dark')
+        ('Dark', 'Dark'),
     )
 
     owner = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
