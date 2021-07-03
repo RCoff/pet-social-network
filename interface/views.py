@@ -81,4 +81,3 @@ class AddAPet(LoginRequiredMixin, View):
 class Login(LoginView):
     template_name = 'account/login.html'
     authentication_form = LoginForm
-    redirect_field_name = 'index'
