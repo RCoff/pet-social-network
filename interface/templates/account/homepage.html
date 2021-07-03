@@ -63,6 +63,12 @@
                                 </div>
                             </div>
                         </div>
+                    {% empty %}
+                        <div class="col-2"></div>
+                        <div class="col-8">
+                            <a class="btn btn-primary btn-lg w-100" href="{% url 'add_a_pet' %}">Add A Pet!</a>
+                        </div>
+                        <div class="col-2"></div>
                     {% endfor %}
                 </div>
             </div>
