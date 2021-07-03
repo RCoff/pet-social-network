@@ -10,5 +10,6 @@ urlpatterns = [
     path('home/add-a-pet/', views.AddAPet.as_view(), name='add_a_pet'),
     path('profile/<uuid:id>', views.PetProfile.as_view(), name='profile'),
     path('login/', views.Login.as_view(), name='login'),
+    path('logout/', views.Logout.as_view(), name='logout'),
     path('admin/', admin.site.urls),
 ]

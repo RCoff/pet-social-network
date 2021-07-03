@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.views.generic import View, ListView, TemplateView, FormView
+from django.contrib.auth import logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.shortcuts import get_object_or_404
@@ -81,3 +82,11 @@ class AddAPet(LoginRequiredMixin, View):
 class Login(LoginView):
     template_name = 'account/login.html'
     authentication_form = LoginForm
+
+
+class Logout(LoginRequiredMixin, View):
+    redirect_url_name = 'index'
+
+    def get(self, request):
+        logout(request)
+        return HttpResponseRedirect(reverse(self.redirect_url_name))
