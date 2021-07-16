@@ -6,6 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
+from django.db.models import Subquery
 
 from data.models import AnimalModel, Friends, PetPost
 from .forms import LoginForm, AddAPetForm, PetProfileForm
@@ -45,7 +46,7 @@ class PetProfile(LoginRequiredMixin, View):
                                                     'friend_posts': self.friend_posts_list})
 
     def friend_posts(self):
-        qs = Friends.objects.select_related('friend').filter(animal=self.profile_id)
+        qs = PetPost.objects.filter(profile=Subquery(Friends.objects.filter(animal=self.profile_id).values('friend'))).order_by('-created')
         return qs
 
 

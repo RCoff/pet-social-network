@@ -54,7 +54,7 @@ class PetProfile(models.Model):
 
 class PetPost(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    profile = models.ForeignKey(PetProfile, on_delete=models.CASCADE)
+    profile = models.ForeignKey(PetProfile, on_delete=models.CASCADE, related_name='profile_set')
     content = models.CharField(max_length=512, blank=False)
     attachment = models.ImageField(upload_to=get_upload_path, blank=True, null=True)
     created = models.DateTimeField(auto_now=True, editable=False)
