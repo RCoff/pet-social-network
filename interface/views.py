@@ -46,7 +46,10 @@ class PetProfile(LoginRequiredMixin, View):
                                                     'friend_posts': self.friend_posts_list})
 
     def friend_posts(self):
-        qs = PetPost.objects.filter(profile=Subquery(Friends.objects.filter(animal=self.profile_id).values('friend'))).order_by('-created')
+        qs = PetPost.objects \
+            .filter(profile=Subquery(Friends.objects.filter(animal=self.profile_id).values('friend'))) \
+            .order_by('-created')
+
         return qs
 
 
