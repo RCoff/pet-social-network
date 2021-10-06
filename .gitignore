@@ -2,6 +2,7 @@
 __pycache__/
 venv/
 .idea/
+user_content/*/
 .env
 .dbeaver/
 .project
